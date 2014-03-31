@@ -1,3 +1,6 @@
+## v0.0.4
+* Added callback_addr function
+
 ## v0.0.3
 * Added reconnect callback to TTWorkQueue
 
