@@ -14,14 +14,14 @@ class TTWorkQueue(beanstalkt.Client):
     """
     Adds initialize and get_status methods to the beanstalkt client
     """
-    def initialize(self, tubeName, status_callback=None, reconnect=None):
-        self._init_status(status_callback)
+    def initialize(self, tubeName, on_status_change=None, on_reconnect=None):
+        self._init_status(on_status_change)
         self.connect(callback=self._connect_callback)
         self.use(tubeName, callback=self._use_callback)
         self.watch(tubeName, callback=self._watch_callback)
         self.ignore("default")
-        if reconnect:
-            self.set_reconnect_callback(reconnect)
+        if on_reconnect:
+            self.set_reconnect_callback(on_reconnect)
 
     def get_status(self):
         return self.useSet and self.watchSet and self.connected
@@ -46,8 +46,8 @@ class TTWorkQueue(beanstalkt.Client):
         self.connected = True
         self._update_status()
 
-    def _init_status(self, status_callback):
-        self.status_callback = status_callback
+    def _init_status(self, on_status_change):
+        self.on_status_change = on_status_change
         self.useSet = False
         self.watchSet = False
         self.connected = False
@@ -57,5 +57,5 @@ class TTWorkQueue(beanstalkt.Client):
         ready = self.get_status()
         if self.ready != ready:
             self.ready = ready
-            if self.status_callback:
-                self.status_callback(self.ready)
+            if self.on_status_change:
+                self.on_status_change(self.ready)
