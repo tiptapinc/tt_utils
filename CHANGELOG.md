@@ -1,3 +1,6 @@
+## v0.0.7
+* added tornado to install_requires
+
 ## v0.0.6
 * Changed callback names in TTWorkQueue to follow "on_xxx" pattern
 
