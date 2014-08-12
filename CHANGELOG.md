@@ -1,3 +1,9 @@
+## v0.0.11
+* split TTWorkQueue into its own library
+* add helpers
+* add colander_helpers
+* add json_helpers
+
 ## v0.0.10
 * get rid of LevelJsonDict class
 * use Pickle to serialize objects into LevelDB
