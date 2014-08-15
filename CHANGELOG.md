@@ -1,3 +1,9 @@
+## v0.0.12
+* added random_sha()
+* added deferred_random_sha()
+* added deferred_dict
+* removed beanstalkt from "install_requires" list
+
 ## v0.0.11
 * split TTWorkQueue into its own library
 * add helpers

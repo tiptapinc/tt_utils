@@ -10,7 +10,7 @@ the indirect service
 
 import colander
 import datetime
-import uuid
+import helpers
 
 
 # the following helpers ensure that the schema nodes that use
@@ -18,12 +18,17 @@ import uuid
 
 @colander.deferred
 def deferred_uuid_me(node, kw):
-    return str(uuid.uuid4())
+    return helpers.uuid_me()
+
+
+@colander.deferred
+def deferred_random_sha(node, kw):
+    return helpers.random_sha()
 
 
 @colander.deferred
 def deferred_now(node, kw):
-    return datetime.datetime.utcnow()
+    return helpers.now()
 
 
 @colander.deferred
@@ -39,3 +44,8 @@ def deferred_list(node, kw):
 @colander.deferred
 def deferred_set(node, kw):
     return set()
+
+
+@colander.deferred
+def deferred_dict(node, kw):
+    return {}
