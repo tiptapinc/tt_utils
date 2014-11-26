@@ -12,9 +12,9 @@ setup(
     version=open('VERSION').read().strip(),
     author='TipTap',
     install_requires=[
-        'colander==1.0b1',
+        'colander>=1.0b1',
         'leveldb',
-        'tornado==3.2.2',
+        'tornado>=3.2.2',
         'PyYAML'
     ],
     package_dir={'tt_utils': 'src'},
