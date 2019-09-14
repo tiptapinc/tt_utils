@@ -1,3 +1,6 @@
+## v0.0.13
+* added support for python 3
+
 ## v0.0.12
 * added random_sha()
 * added deferred_random_sha()

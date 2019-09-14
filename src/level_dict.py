@@ -1,9 +1,10 @@
-from UserDict import DictMixin
+# from UserDict import DictMixin
+from collections import MutableMapping
 import leveldb
 import pickle
 
 
-class LevelDict(object, DictMixin):
+class LevelDict(MutableMapping, object):
     """
     persistent dictionary-like object using LevelDB
     and Pickle
@@ -25,6 +26,9 @@ class LevelDict(object, DictMixin):
     def __iter__(self):
         for k, v in self.db.RangeIter(include_value=False):
             yield k
+
+    def __len__(self):
+        return len(self.path)
 
     def keys(self):
         return [k for k, v in self.db.RangeIter()]

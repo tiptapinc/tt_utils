@@ -10,7 +10,7 @@ the indirect service
 
 import colander
 import datetime
-import helpers
+from . import helpers
 
 
 # the following helpers ensure that the schema nodes that use

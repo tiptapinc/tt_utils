@@ -3,7 +3,7 @@
 #
 # relies on the file /opt/tiptap/configs/dev_vm.yml
 #
-import config
+from . import config
 
 
 def is_dev_vm():
