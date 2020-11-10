@@ -1,3 +1,6 @@
+## v0.0.14
+* call yaml.load with Loader kwargs
+
 ## v0.0.13
 * added support for python 3
 
