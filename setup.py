@@ -17,6 +17,5 @@ setup(
         'tornado>=3.2.2',
         'PyYAML'
     ],
-    package_dir={'tt_utils': 'src'},
     packages=['tt_utils']
 )
