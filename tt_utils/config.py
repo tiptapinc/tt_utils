@@ -32,10 +32,11 @@ def config_path_to_name(configPath):
     assumes that configPath refers to a file in a directory named either
     "configs" or "keys"
     """
-    patt = r"(?:(?<=^)|(?<=\/))(?:configs|keys)\/.+\.yml"
+    patt = r"(?:(?<=^)|(?<=\/))(?:configs|keys)\/.+(?=\.yml)"
     m = re.search(patt, configPath)
     if m:
-        return m.group().replace("/", "_")
+        name = m.group().replace("/", "_")
+        return name
 
     return ""
 
