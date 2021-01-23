@@ -5,7 +5,7 @@ import re
 import yaml
 
 CONFIG_ACCESS_KEY_ID = os.getenv("CONFIG_ACCESS_KEY_ID")
-CONFIG_ACCESS_KEY_SECRET = os.getenv("CONFIG_ACCESS_KEY_SECRET")
+CONFIG_SECRET_ACCESS_KEY = os.getenv("CONFIG_SECRET_ACCESS_KEY")
 CONFIG_REGION = os.getenv("CONFIG_REGION")
 ENV = os.getenv("ENV")
 MM_DIR = os.getenv("MM_DIR")
@@ -14,7 +14,7 @@ MM_DIR = os.getenv("MM_DIR")
 def load_from_param_store(name):
     session = boto3.session.Session(
         aws_access_key_id=CONFIG_ACCESS_KEY_ID,
-        aws_secret_access_key=CONFIG_ACCESS_KEY_SECRET,
+        aws_secret_access_key=CONFIG_SECRET_ACCESS_KEY,
         region_name=CONFIG_REGION
     )
     client = session.client('ssm')
