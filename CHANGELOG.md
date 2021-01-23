@@ -1,3 +1,9 @@
+## v0.0.16
+* make load_config work with AWS Systems Manager Parameter Store
+
+## v0.0.15
+* update to work with pip -e git+https
+
 ## v0.0.14
 * call yaml.load with Loader kwargs
 
