@@ -85,8 +85,8 @@ def load_config(configPath="./configs/config.yml", name=None):
     - if "name" is not None, load the parameter of that name from the AWS
       SSM Parameter Store
 
-    - else if configPath is in the path of os.dirname(__file__), load it
-      as a YAML file.
+    - else if configPath is in the path of os.curdir, load it as a YAML
+      file.
 
     - else if configPath ends in "env.yml", get environment from the "ENV"
       environment variable if possible, otherwise load configPath as a yaml
@@ -114,7 +114,7 @@ def load_config(configPath="./configs/config.yml", name=None):
     if MM_DIR and is_in_path(configPath, MM_DIR):
         return load_from_param_store(config_path_to_name(configPath))
 
-    if is_in_path(configPath, os.path.dirname(__file__)):
+    if is_in_path(configPath, os.curdir):
         return load_from_local_file(configPath)
 
     if CONFIG_ACCESS_KEY_ID is None:
