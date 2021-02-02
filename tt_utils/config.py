@@ -32,8 +32,11 @@ def load_from_param_store(name):
             parameter = client.get_parameter(Name=name)
             break
         except botocore.exceptions.ClientError as e:
-            log.info(f"param store error, e.response: {e.response}")
-            time.sleep(RATE_LIMIT_DELAY)
+            if e.response['Error']['Code'] == 'ThrottlingException':
+                log.info(f"parameter store rate limited getting {name}")
+                time.sleep(RATE_LIMIT_DELAY)
+            else:
+                raise
 
     value = yaml.safe_load(parameter['Parameter']['Value'])
     return value
