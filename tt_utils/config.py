@@ -1,14 +1,22 @@
 import boto3
+import botocore.exceptions
 import os
 import os.path
 import re
+import time
 import yaml
+
+import logging
+log = logging.getLogger(__name__)
 
 CONFIG_ACCESS_KEY_ID = os.getenv("CONFIG_ACCESS_KEY_ID")
 CONFIG_SECRET_ACCESS_KEY = os.getenv("CONFIG_SECRET_ACCESS_KEY")
 CONFIG_REGION = os.getenv("CONFIG_REGION")
 ENV = os.getenv("ENV")
 MM_DIR = os.getenv("MM_DIR")
+
+RATE_LIMIT_RETRIES = 30
+RATE_LIMIT_DELAY = 1
 
 
 def load_from_param_store(name):
@@ -18,7 +26,15 @@ def load_from_param_store(name):
         region_name=CONFIG_REGION
     )
     client = session.client('ssm')
-    parameter = client.get_parameter(Name=name)
+
+    for _ in range(RATE_LIMIT_RETRIES):
+        try:
+            parameter = client.get_parameter(Name=name)
+            break
+        except botocore.exceptions.ClientError as e:
+            log.info(f"param store error, e.response: {e.response}")
+            time.sleep(RATE_LIMIT_DELAY)
+
     value = yaml.safe_load(parameter['Parameter']['Value'])
     return value
 
