@@ -11,7 +11,7 @@ setup(
     ),
     version=open('VERSION').read().strip(),
     author='TipTap',
-    install_requires=['leveldb', 'tornado', 'beanstalkt', 'PyYAML'],
+    install_requires=['tornado', 'beanstalkt', 'PyYAML'],
     package_dir={'tt_utils': 'src'},
     packages=['tt_utils']
 )
