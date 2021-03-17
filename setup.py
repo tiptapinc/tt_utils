@@ -13,7 +13,6 @@ setup(
     author='TipTap',
     install_requires=[
         'colander>=1.0b1',
-        'leveldb',
         'tornado>=3.2.2',
         'PyYAML'
     ],
