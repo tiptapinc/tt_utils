@@ -1,5 +1,5 @@
 # from UserDict import DictMixin
-from collections import MutableMapping
+from collections.abc import MutableMapping
 import leveldb
 import pickle
 
